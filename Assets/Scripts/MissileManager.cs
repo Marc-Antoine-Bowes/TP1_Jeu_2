@@ -8,6 +8,7 @@ public class MissileManager : MonoBehaviour
     private ParticleSystem smoke;
     private bool hasExploded = false;
     private Rigidbody rb;
+    private SphereCollider explosionRange;
 
     void Start()
     {
@@ -21,10 +22,12 @@ public class MissileManager : MonoBehaviour
         explosion = transform.Find("Explosion").GetComponent<ParticleSystem>();
         smoke = transform.Find("Rendering/Smoke").GetComponent<ParticleSystem>();
         rendering = transform.Find("Rendering/Cube").gameObject;
+        explosionRange = GetComponent<SphereCollider>();
 
         smoke.gameObject.SetActive(true);
         explosion.gameObject.SetActive(false);
         rendering.SetActive(true);
+        explosionRange.enabled = false;
 
         smoke.Play();
     }
@@ -46,6 +49,7 @@ public class MissileManager : MonoBehaviour
 
         smoke.Stop();
         rendering.SetActive(false);
+        explosionRange.enabled = true;
         StartCoroutine(PlayExplosion());
     }
 
