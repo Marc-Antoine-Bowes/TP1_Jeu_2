@@ -6,33 +6,35 @@ using System.Collections.Generic;
 public class ShootWeapon : MonoBehaviour
 {
     private const int BULLET_FORCE = 100;
+    private const int MISSILE_FORCE = 50;
 
+    [Header("Projectile pools")]
     [SerializeField] private GameObject bulletPool;
+    [SerializeField] private GameObject missilePool;
+
+    [Header("Audio Clips")]
     [SerializeField] private AudioClip bulletClip;
+    [SerializeField] private AudioClip missileClip;
 
     private AudioSource audioSource;
     private List<GameObject> bullets = new List<GameObject>();
+    private List<GameObject> missiles = new List<GameObject>();
     private Vector3 gunEndPos;
-    private InputAction shootAction;
+    private InputAction shootPrimaryAction;
+    private InputAction shootSecondaryAction;
     private float fireRateRpm = 240f;
+    private float missileFireRateRpm = 60f;
     private float nextFireTime = 0f;
+    private float nextMissileFireTime = 0f;
 
 
     void Start()
     {
-        shootAction = InputSystem.actions.FindAction("Attack");
+        shootPrimaryAction = InputSystem.actions.FindAction("Attack");
+        shootSecondaryAction = InputSystem.actions.FindAction("SecondaryAttack");
         audioSource = GetComponent<AudioSource>();
 
-        if (bulletPool == null)
-        {
-            Debug.LogError("Bullet Pool is not assigned in the inspector.");
-            return;
-        }
-
-        foreach (Transform bullet in bulletPool.transform)
-        {
-            bullets.Add(bullet.gameObject);
-        }
+        AssignProjectiles();
 
         GameObject gunEnd = transform.Find("Gun end").gameObject;
         if (gunEnd != null)
@@ -48,12 +50,21 @@ public class ShootWeapon : MonoBehaviour
 
     private void ManageShoot()
     {
-        if (shootAction.IsPressed())
+        if (shootPrimaryAction.IsPressed())
         {
             if (Time.time >= nextFireTime)
             {
                 ShootBullet();
                 nextFireTime = Time.time + 60f / fireRateRpm;
+            }
+        }
+
+        if (shootSecondaryAction.IsPressed())
+        {
+            if (Time.time >= nextMissileFireTime)
+            {
+                ShootMissile();
+                nextMissileFireTime = Time.time + 60f / missileFireRateRpm;
             }
         }
     }
@@ -70,6 +81,18 @@ public class ShootWeapon : MonoBehaviour
         }
     }
 
+    private void ShootMissile()
+    {
+        GameObject missile = GetMissile();
+        if (missile != null)
+        {
+            missile.SetActive(true);
+            missile.transform.SetPositionAndRotation(transform.position, transform.rotation);
+            missile.GetComponent<Rigidbody>().AddForce(CreateNewForce(missile.transform.position, MISSILE_FORCE), ForceMode.Impulse);
+            audioSource.PlayOneShot(missileClip);
+        }
+    }
+
     private GameObject GetBulet()
     {
         foreach (GameObject bullet in bullets)
@@ -77,6 +100,18 @@ public class ShootWeapon : MonoBehaviour
             if (!bullet.activeInHierarchy)
             {
                 return bullet;
+            }
+        }
+        return null;
+    }
+
+    private GameObject GetMissile()
+    {
+        foreach (GameObject missile in missiles)
+        {
+            if (!missile.activeInHierarchy)
+            {
+                return missile;
             }
         }
         return null;
@@ -92,6 +127,19 @@ public class ShootWeapon : MonoBehaviour
 
         return newForce;
 
+    }
+
+    private void AssignProjectiles()
+    {
+        foreach (Transform bullet in bulletPool.transform)
+        {
+            bullets.Add(bullet.gameObject);
+        }
+
+        foreach (Transform missile in missilePool.transform)
+        {
+            missiles.Add(missile.gameObject);
+        }
     }
 
 }
