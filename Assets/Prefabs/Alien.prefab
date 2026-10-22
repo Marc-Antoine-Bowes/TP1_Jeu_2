@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 616056485369056265}
   - component: {fileID: 616056485369057271}
   - component: {fileID: 616056485369056264}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UpperLegFrontL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,6 +62,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -83,9 +85,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &616056485494741375
 GameObject:
@@ -98,7 +102,7 @@ GameObject:
   - component: {fileID: 616056485494741374}
   - component: {fileID: 616056485494741372}
   - component: {fileID: 616056485494741373}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,6 +153,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -170,9 +176,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &616056485553046870
 GameObject:
@@ -183,9 +191,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 616056485553046867}
-  m_Layer: 0
+  - component: {fileID: 1332194934801186198}
+  - component: {fileID: 3984699458269179641}
+  - component: {fileID: 7576485538393400581}
+  - component: {fileID: 6751501755620470522}
+  - component: {fileID: 3073939081777962734}
+  - component: {fileID: -6164265531925510565}
+  - component: {fileID: 1821499221314887750}
+  m_Layer: 3
   m_Name: Alien
-  m_TagString: Untagged
+  m_TagString: Alien
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,15 +213,233 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616056485553046870}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29, y: 4.1, z: 24.82}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -13.6, y: -54.07, z: 77.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7731791839521410084}
   - {fileID: 629601535310525731}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1332194934801186198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616056485553046870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9dcecf1f1166744f95c506a4faae06a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Actor
+  goal: {fileID: 0}
+--- !u!114 &3984699458269179641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616056485553046870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7abaef0ba99a71043a50ed35c412586a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Alien_Manager
+  bonus_manager: {fileID: 0}
+  dropChance: 0.15
+  hp: 1
+  audioClip: {fileID: 8300000, guid: 8f252cb39a2a2da44aefd3d09599af53, type: 3}
+  scoreValue: 10
+--- !u!195 &7576485538393400581
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616056485553046870}
+  m_Enabled: 0
+  m_AgentTypeID: 0
+  m_Radius: 3.55
+  m_Speed: 15
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 5
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!54 &6751501755620470522
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616056485553046870}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 64
+  m_CollisionDetection: 0
+--- !u!65 &3073939081777962734
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616056485553046870}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.91, y: 2.35, z: 5.77}
+  m_Center: {x: 0, y: -0.67, z: 0.45}
+--- !u!65 &-6164265531925510565
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616056485553046870}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.98, y: 2.45, z: 4.92}
+  m_Center: {x: 0, y: 2.14, z: 0}
+--- !u!82 &1821499221314887750
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616056485553046870}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &616056485579276216
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +449,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 616056485579276199}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UpperLegsPivotR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +484,7 @@ GameObject:
   - component: {fileID: 616056485850343097}
   - component: {fileID: 616056485850343079}
   - component: {fileID: 616056485850343096}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Front Claw.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,6 +534,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -322,9 +557,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &616056486013757464
 GameObject:
@@ -337,7 +574,7 @@ GameObject:
   - component: {fileID: 616056486013757447}
   - component: {fileID: 616056486013757445}
   - component: {fileID: 616056486013757446}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UpperLegFrontR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,6 +625,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -409,9 +648,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &616056486101113454
 GameObject:
@@ -422,7 +663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 616056486101113453}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ClawPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,7 +697,7 @@ GameObject:
   - component: {fileID: 616056486283301736}
   - component: {fileID: 616056486283301718}
   - component: {fileID: 616056486283301719}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,6 +748,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -528,9 +771,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &616056486283516894
 GameObject:
@@ -543,7 +788,7 @@ GameObject:
   - component: {fileID: 616056486283516893}
   - component: {fileID: 616056486283516891}
   - component: {fileID: 616056486283516892}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -594,6 +839,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -615,9 +862,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &616056486607040210
 GameObject:
@@ -628,7 +877,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 616056486607040209}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UpperLegsPivotL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,7 +910,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 616056486644412398}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ClawPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -695,7 +944,7 @@ GameObject:
   - component: {fileID: 616056486644496721}
   - component: {fileID: 616056486644496735}
   - component: {fileID: 616056486644496720}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Front Claw.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -745,6 +994,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -766,9 +1017,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &616056486660803791
 GameObject:
@@ -781,7 +1034,7 @@ GameObject:
   - component: {fileID: 616056486660803790}
   - component: {fileID: 616056486660803788}
   - component: {fileID: 616056486660803789}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UpperLegBackR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -832,6 +1085,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -853,9 +1108,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &616056486697416714
 GameObject:
@@ -866,7 +1123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 616056486697416713}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ClawPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -900,7 +1157,7 @@ GameObject:
   - component: {fileID: 616056486767276381}
   - component: {fileID: 616056486767276379}
   - component: {fileID: 616056486767276380}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UpperLegBackL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -951,6 +1208,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -972,9 +1231,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &616056487105725472
 GameObject:
@@ -987,7 +1248,7 @@ GameObject:
   - component: {fileID: 616056487105725487}
   - component: {fileID: 616056487105725485}
   - component: {fileID: 616056487105725486}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1037,6 +1298,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1058,9 +1321,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &616056487270942844
 GameObject:
@@ -1073,7 +1338,7 @@ GameObject:
   - component: {fileID: 616056487270942843}
   - component: {fileID: 616056487270942841}
   - component: {fileID: 616056487270942842}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Front Claw.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1123,6 +1388,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1144,9 +1411,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &616056487422229044
 GameObject:
@@ -1157,7 +1426,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 616056487422229043}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ClawPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1189,7 +1458,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 616056487433484058}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BodyPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1225,7 +1494,7 @@ GameObject:
   - component: {fileID: 295480801997757182}
   - component: {fileID: 7381867288639382413}
   - component: {fileID: 9152979490389760842}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1276,6 +1545,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1297,9 +1568,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1695290991158068871
 GameObject:
@@ -1311,7 +1584,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7731791839521410084}
   - component: {fileID: 4652683636541265190}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1368,7 +1641,7 @@ GameObject:
   - component: {fileID: 4131233767460377835}
   - component: {fileID: 7855979611569476649}
   - component: {fileID: 871144440330977506}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Front Claw.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1418,6 +1691,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1439,9 +1714,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5098723525359731016
 GameObject:
@@ -1454,7 +1731,7 @@ GameObject:
   - component: {fileID: 5098723525359377768}
   - component: {fileID: 5098723525356510538}
   - component: {fileID: 5098723525357477770}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1504,6 +1781,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1525,9 +1804,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5098723525359731018
 GameObject:
@@ -1538,7 +1819,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5098723525359377770}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BobbleEnemy-Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1572,7 +1853,7 @@ GameObject:
   - component: {fileID: 629601535310525731}
   - component: {fileID: 3403903925019588047}
   - component: {fileID: 2472918050383096025}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1609,7 +1890,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -6377,7 +6658,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &2472918050383096025
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6396,6 +6677,8 @@ ParticleSystemRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6417,9 +6700,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -6451,4 +6736,3 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
