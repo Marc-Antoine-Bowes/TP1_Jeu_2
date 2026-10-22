@@ -10,19 +10,18 @@ public class Alien_Manager : MonoBehaviour
     [SerializeField] private int hp = 1;
     private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
-    private Alien_Life_Manager life_manager;
 
     [SerializeField] private int scoreValue = 10;
     private ParticleSystem explosion;
     private GameObject body;
     private Rigidbody rb;
+
     private void OnEnable()
     {
         body = transform.Find("Body").gameObject;
     }
     private void Start()
     {
-        life_manager = GetComponent<Alien_Life_Manager>();
         explosion = transform.Find("Explosion").GetComponent<ParticleSystem>();
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
@@ -32,8 +31,7 @@ public class Alien_Manager : MonoBehaviour
     {
         if (collider.gameObject.name == "SpaceMarine")
         {
-            Hurt();
-            if (hp <= 0) {
+            if (false) {
                 rb.linearVelocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
                 DeadReset();
@@ -53,11 +51,6 @@ public class Alien_Manager : MonoBehaviour
         {
             bonus_manager.GetComponent<Bonus_Manager>().spawnBonus(gameObject.transform.position);
         }
-    }
-
-    public void Hurt()
-    {
-        hp -= 1;
     }
     IEnumerator Die()
     {
