@@ -3,16 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Alien
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Alien
   - Water
   - UI
   - Floor
-  - 
+  - Spawner
   - 
   - 
   - 
@@ -43,3 +44,4 @@ TagManager:
     locked: 0
   m_RenderingLayers:
   - Default
+  m_MigratedRenderPipelines: []
