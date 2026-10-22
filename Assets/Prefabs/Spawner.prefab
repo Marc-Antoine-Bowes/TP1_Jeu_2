@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3745695871402960284}
   - component: {fileID: 1021574266178418222}
   - component: {fileID: 520524504235503929}
-  - component: {fileID: 49961152214591234}
   m_Layer: 7
   m_Name: Spawner
   m_TagString: Untagged
@@ -113,15 +112,3 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &49961152214591234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2960538766078239763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 363353ec90b7b4b49967c0c26d2e804e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Spawner_Life_Manager

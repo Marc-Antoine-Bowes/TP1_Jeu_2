@@ -6,7 +6,7 @@ using UnityEngine;
 public class Spawn_Manager : MonoBehaviour
 {
     [SerializeField] private GameObject[] spawners;
-    [SerializeField] private GameObject[] aliens;
+    private GameObject[] aliens;
 
     void Start()
     {

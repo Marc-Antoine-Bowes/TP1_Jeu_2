@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Bonus_Manager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] bonus;
+    private GameObject[] bonus;
     void Start()
     {
 
