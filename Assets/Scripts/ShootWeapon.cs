@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class ShootWeapon : MonoBehaviour
 {
     private const int BULLET_FORCE = 100;
-    private const int MISSILE_FORCE = 50;
+    private const int MISSILE_FORCE = 75;
 
     [Header("Projectile pools")]
     [SerializeField] private GameObject bulletPool;
@@ -19,7 +19,6 @@ public class ShootWeapon : MonoBehaviour
     private AudioSource audioSource;
     private List<GameObject> bullets = new List<GameObject>();
     private List<GameObject> missiles = new List<GameObject>();
-    private Vector3 gunEndPos;
     private InputAction shootPrimaryAction;
     private InputAction shootSecondaryAction;
     private float fireRateRpm = 240f;
@@ -35,12 +34,6 @@ public class ShootWeapon : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         AssignProjectiles();
-
-        GameObject gunEnd = transform.Find("Gun end").gameObject;
-        if (gunEnd != null)
-        {
-            gunEndPos = gunEnd.transform.position;
-        }
     }
 
     void Update()
@@ -75,7 +68,7 @@ public class ShootWeapon : MonoBehaviour
         if (bullet != null)
         {
             bullet.SetActive(true);
-            bullet.transform.SetPositionAndRotation(transform.position, transform.rotation);
+            bullet.transform.position = transform.position;
             bullet.GetComponent<Rigidbody>().AddForce(CreateNewForce(bullet.transform.position, BULLET_FORCE), ForceMode.Impulse);
             audioSource.PlayOneShot(bulletClip);
         }
@@ -119,6 +112,7 @@ public class ShootWeapon : MonoBehaviour
 
     private Vector3 CreateNewForce(Vector3 otherObjectPosition, float intensity)
     {
+        Vector3 gunEndPos = transform.Find("Gun end").position;
         Vector3 newForce = new Vector3(gunEndPos.x - otherObjectPosition.x, gunEndPos.y - otherObjectPosition.y, gunEndPos.z - otherObjectPosition.z);
 
         newForce = newForce.normalized;
