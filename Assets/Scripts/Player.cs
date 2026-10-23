@@ -1,9 +1,10 @@
+using TMPro;
 using UnityEngine;
 
 public class Player : Killable
 {
     private ShootWeapon gunManager;
-
+    [SerializeField] private TextMeshProUGUI lifeText;
     void Start()
     {
         gunManager = transform.Find("Gun").GetComponent<ShootWeapon>();
@@ -12,7 +13,7 @@ public class Player : Killable
     // Update is called once per frame
     void Update()
     {
-        
+        lifeText.text = getHealth().ToString();
     }
 
     private void OnTriggerEnter(Collider other)

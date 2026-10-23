@@ -36,6 +36,10 @@ public abstract class Killable : MonoBehaviour
         return currentHealth <= 0;
     }
     
+    public virtual int getHealth()
+    {
+        return currentHealth;
+    }
     public virtual void OnDeath()
     {
     }
