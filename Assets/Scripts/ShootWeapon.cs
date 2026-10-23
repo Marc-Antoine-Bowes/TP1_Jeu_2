@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.XR;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,6 +31,7 @@ public class ShootWeapon : MonoBehaviour
     private float nextFireTime = 0f;
     private float nextMissileFireTime = 0f;
     private int missileMagCapacity = 5;
+    private float bonusShotDuration = 0f;
 
 
     void Start()
@@ -43,6 +45,7 @@ public class ShootWeapon : MonoBehaviour
 
     void Update()
     {
+        bonusShotDuration = Mathf.Max(0f, bonusShotDuration - Time.deltaTime);
         ManageShoot();
         UpdateMagUi();
     }
@@ -71,12 +74,33 @@ public class ShootWeapon : MonoBehaviour
     private void ShootBullet()
     {
         GameObject bullet = GetBulet();
+
         if (bullet != null)
         {
             bullet.SetActive(true);
             bullet.transform.position = transform.position;
-            bullet.GetComponent<Rigidbody>().AddForce(CreateNewForce(bullet.transform.position, BULLET_FORCE), ForceMode.Impulse);
+            bullet.GetComponent<Rigidbody>().AddForce(CreateNewForce(bullet.transform, BULLET_FORCE), ForceMode.Impulse);
             audioSource.PlayOneShot(bulletClip);
+        }
+
+        if (bonusShotDuration > 0f)
+        {
+            GameObject bulletLeft = GetBulet();
+
+            if(bulletLeft != null)
+            {
+                bulletLeft.SetActive(true);
+                bulletLeft.transform.position = transform.position;
+                bulletLeft.GetComponent<Rigidbody>().AddForce(CreateNewForce(bulletLeft.transform, BULLET_FORCE, -1f), ForceMode.Impulse);
+            }
+
+            GameObject bulletRight = GetBulet();
+            if (bulletRight != null)
+            {
+                bulletRight.SetActive(true);
+                bulletRight.transform.position = transform.position;
+                bulletRight.GetComponent<Rigidbody>().AddForce(CreateNewForce(bulletRight.transform, BULLET_FORCE, 1f), ForceMode.Impulse);
+            }
         }
     }
 
@@ -91,7 +115,7 @@ public class ShootWeapon : MonoBehaviour
             missileMagCapacity--;
             missile.SetActive(true);
             missile.transform.SetPositionAndRotation(transform.position, transform.rotation);
-            missile.GetComponent<Rigidbody>().AddForce(CreateNewForce(missile.transform.position, MISSILE_FORCE), ForceMode.Impulse);
+            missile.GetComponent<Rigidbody>().AddForce(CreateNewForce(missile.transform, MISSILE_FORCE), ForceMode.Impulse);
             audioSource.PlayOneShot(missileClip);
         }
     }
@@ -120,10 +144,12 @@ public class ShootWeapon : MonoBehaviour
         return null;
     }
 
-    private Vector3 CreateNewForce(Vector3 otherObjectPosition, float intensity)
+    private Vector3 CreateNewForce(Transform otherObjectPosition, float intensity, float horizontalOffset = 0)
     {
         Vector3 gunEndPos = transform.Find("Gun end").position;
-        Vector3 newForce = new Vector3(gunEndPos.x - otherObjectPosition.x, gunEndPos.y - otherObjectPosition.y, gunEndPos.z - otherObjectPosition.z);
+        Vector3 newForce = new Vector3(gunEndPos.x - otherObjectPosition.position.x, gunEndPos.y - otherObjectPosition.position.y, gunEndPos.z - otherObjectPosition.position.z);
+
+        newForce += otherObjectPosition.right * horizontalOffset;
 
         newForce = newForce.normalized;
 
@@ -155,6 +181,11 @@ public class ShootWeapon : MonoBehaviour
     public void AddMissilesToMag(int nb)
     {
         missileMagCapacity += nb;
+    }
+
+    public void IncreaseBonusShotDuration(float duration)
+    {
+        bonusShotDuration += duration;
     }
 
 }
