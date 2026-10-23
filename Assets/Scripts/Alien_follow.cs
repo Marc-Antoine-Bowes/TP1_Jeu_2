@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Actor : MonoBehaviour
 {
-    [SerializeField] GameObject goal;
+    [SerializeField] Transform goal;
     private NavMeshAgent navMeshAgent;
     private Transform transformAlien;
     void Start()
@@ -19,7 +19,7 @@ public class Actor : MonoBehaviour
 
         if (navMeshAgent != null && canMove())
         {
-            navMeshAgent.destination = goal.transform.position;
+            navMeshAgent.destination = goal.position;
         }
 
     }

@@ -3189,6 +3189,7 @@ GameObject:
   - component: {fileID: 8751394340491349542}
   - component: {fileID: 6085529421873167765}
   - component: {fileID: -8894677644023393139}
+  - component: {fileID: 5392779456255027770}
   m_Layer: 7
   m_Name: SpaceMarine
   m_TagString: Player
@@ -3275,6 +3276,18 @@ CapsuleCollider:
   m_Height: 11
   m_Direction: 1
   m_Center: {x: 0, y: 6, z: 0}
+--- !u!114 &5392779456255027770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6087151439508914907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae40250f222f7e419714a2bea50d516, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &6246331835379463865
 GameObject:
   m_ObjectHideFlags: 0

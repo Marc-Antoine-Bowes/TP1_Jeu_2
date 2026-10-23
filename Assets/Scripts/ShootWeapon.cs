@@ -19,6 +19,7 @@ public class ShootWeapon : MonoBehaviour
     private AudioSource audioSource;
     private List<GameObject> bullets = new List<GameObject>();
     private List<GameObject> missiles = new List<GameObject>();
+    private List<GameObject> missileMag = new List<GameObject>();
     private InputAction shootPrimaryAction;
     private InputAction shootSecondaryAction;
     private float fireRateRpm = 240f;
