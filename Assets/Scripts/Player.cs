@@ -6,7 +6,7 @@ public class Player : Killable
 
     void Start()
     {
-        gunManager = transform.Find("Gun").GetComponent<ShootWeapon>();
+        gunManager = GetComponentInChildren<ShootWeapon>();
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class Player : Killable
         }
         if(other.CompareTag("AmmoBox"))
         {
-            TakeDamage(1);
+            gunManager.AddMissilesToMag(5);
         }
     }
 

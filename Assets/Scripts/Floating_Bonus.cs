@@ -21,4 +21,12 @@ public class FloatingBonus : MonoBehaviour
         float newY = startPosition.y + Mathf.Sin(Time.time * frequency) * amplitude;
         transform.position = new Vector3(startPosition.x, newY, startPosition.z);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }

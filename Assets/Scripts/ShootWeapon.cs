@@ -1,6 +1,7 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
 
 [RequireComponent(typeof(AudioSource))]
 public class ShootWeapon : MonoBehaviour
@@ -16,16 +17,19 @@ public class ShootWeapon : MonoBehaviour
     [SerializeField] private AudioClip bulletClip;
     [SerializeField] private AudioClip missileClip;
 
+    [Header("HUD MAG")]
+    [SerializeField] private TextMeshProUGUI magText;
+
     private AudioSource audioSource;
     private List<GameObject> bullets = new List<GameObject>();
     private List<GameObject> missiles = new List<GameObject>();
-    private List<GameObject> missileMag = new List<GameObject>();
     private InputAction shootPrimaryAction;
     private InputAction shootSecondaryAction;
     private float fireRateRpm = 240f;
     private float missileFireRateRpm = 60f;
     private float nextFireTime = 0f;
     private float nextMissileFireTime = 0f;
+    private int missileMagCapacity = 5;
 
 
     void Start()
@@ -40,6 +44,7 @@ public class ShootWeapon : MonoBehaviour
     void Update()
     {
         ManageShoot();
+        UpdateMagUi();
     }
 
     private void ManageShoot()
@@ -77,9 +82,13 @@ public class ShootWeapon : MonoBehaviour
 
     private void ShootMissile()
     {
+        if (missileMagCapacity <= 0) return;
+
         GameObject missile = GetMissile();
+
         if (missile != null)
         {
+            missileMagCapacity--;
             missile.SetActive(true);
             missile.transform.SetPositionAndRotation(transform.position, transform.rotation);
             missile.GetComponent<Rigidbody>().AddForce(CreateNewForce(missile.transform.position, MISSILE_FORCE), ForceMode.Impulse);
@@ -135,6 +144,17 @@ public class ShootWeapon : MonoBehaviour
         {
             missiles.Add(missile.gameObject);
         }
+    }
+
+    private void UpdateMagUi()
+    {
+        return;
+        magText.text = missileMagCapacity.ToString();
+    }
+
+    public void AddMissilesToMag(int nb)
+    {
+        missileMagCapacity += nb;
     }
 
 }
